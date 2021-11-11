@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import Movie from "../components/Movie";
-//import Movie from "../components/Movie";
 
 const HomeScreen = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,6 +26,10 @@ const HomeScreen = () => {
     fetchData();
   }, [setMovies, setLoading, setError]);
 
+  const childToParent = (childData) => {
+    setModal(childData);
+  };
+
   return (
     <>
       {loading ? (
@@ -35,7 +39,11 @@ const HomeScreen = () => {
       ) : (
         <div className="middle-row">
           {movies.map((movie) => (
-            <Movie key={movie.episode_id} movie={movie} />
+            <Movie
+              key={movie.episode_id}
+              movie={movie}
+              childToParent={childToParent}
+            />
           ))}
         </div>
       )}

@@ -1,3 +1,10 @@
+:root {
+  --fs-xxl: clamp(5rem, 12vw + 1rem, 8rem);
+  --fs-xl: clamp(4rem, 12vw + 1rem, 6rem);
+  --fs-l: clamp(1.25rem, 10vw + 1rem, 2.5rem);
+  --fs-m: clamp(1rem, 10vw + 1rem, 1.5rem);
+}
+
 @font-face {
   font-family: Jedi;
   src: url("../assets/fonts/Starjedi.ttf") format("truetype");
@@ -9,6 +16,105 @@
 
 body {
   background-image: url("../assets/img/star-wars-background.jpg");
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas: "header" "main" "footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr 5rem;
+  height: 100%;
+}
+
+header {
+  grid-area: header;
+  text-align: center;
+}
+header h1 {
+  font-family: Jedi;
+  font-size: var(--fs-xxl);
+  color: #fff;
+}
+header h2 {
+  font-family: "Franklin Gothic";
+  font-size: var(--fs-xl);
+  color: #ffe81f;
+}
+
+main {
+  grid-area: main;
+  padding: 2rem;
+  color: #fff;
+}
+
+.top-row {
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.middle-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  background-color: rgba(91, 91, 93, 0.2);
+  backdrop-filter: blur(5px);
+  padding: 2.5rem;
+  border-radius: 0.5rem;
+  margin: 1rem;
+  font-family: "Franklin Gothic";
+}
+
+.card-body {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+.card-body p:first-child {
+  font-size: var(--fs-l);
+}
+
+.card-body p {
+  font-size: var(--fs-m);
+}
+
+.primary-btn {
+  width: 50%;
+  height: 3rem;
+  margin: 0.5rem;
+  align-self: center;
+  border-radius: 0.5rem;
+  font-size: var(--fs-m);
+  background-color: #2d2d2d;
+  color: #fff;
+  cursor: pointer;
+  border: 1px solid #fff;
+}
+
+.primary-btn:hover {
+  color: #ffe81f;
+  border: 1px solid #ffe81f;
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: lightblue;
+  z-index: 1;
+}
+
+footer {
+  grid-area: footer;
+  font-family: "Franklin Gothic";
+  font-size: var(--fs-l);
+  color: #fff;
+  text-align: center;
 }
 
 /*# sourceMappingURL=index.css.map */

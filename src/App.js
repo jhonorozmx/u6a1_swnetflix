@@ -5,7 +5,9 @@ function App() {
   return (
     <div className="grid-container">
       <header className="top-row">
-        <h1>THIS IS A HEADER</h1>
+        <h2>The</h2>
+        <h1>star wars</h1>
+        <h2>Movie Reference</h2>
       </header>
       <main>
         <Routes>

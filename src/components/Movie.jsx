@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 
-const Movie = ({ movie }) => {
-  const img = `poster${movie.episode_id}.webp`;
+const Movie = ({ movie, childToParent }) => {
   return (
     <div key={movie.episode_id} className="card">
       <div className="card-image-container">
@@ -14,9 +13,12 @@ const Movie = ({ movie }) => {
         />
       </div>
       <div className="card-body">
-        <h2>{movie.title}</h2>
+        <p>{movie.title}</p>
         <p>{movie.director}</p>
         <p>{movie.release_date}</p>
+        <button className="primary-btn" onClick={() => childToParent(true)}>
+          See Opening
+        </button>
       </div>
     </div>
   );
