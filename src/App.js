@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import HomeScreen from "./screens/HomeScreen";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="grid-container">
+      <header className="top-row">
+        <h1>THIS IS A HEADER</h1>
       </header>
+      <main>
+        <Routes>
+          <Route path="/" element={<HomeScreen />}></Route>
+        </Routes>
+      </main>
+      <footer className="bottom-row">ITK 2021 All Rights Reserved</footer>
     </div>
   );
 }
