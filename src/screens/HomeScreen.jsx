@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import Movie from "../components/Movie";
+import Opening from "../components/Opening";
 
 const HomeScreen = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [modal, setModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,8 +28,9 @@ const HomeScreen = () => {
     fetchData();
   }, [setMovies, setLoading, setError]);
 
-  const childToParent = (childData) => {
-    setModal(childData);
+  const modalHandler = ({ showModal, modalContent }) => {
+    setShowModal(showModal);
+    setModalContent(modalContent);
   };
 
   return (
@@ -35,14 +38,17 @@ const HomeScreen = () => {
       {loading ? (
         <LoadingBox />
       ) : error ? (
-        <MessageBox type="error">{error}</MessageBox>
+        <MessageBox type="error" message={error} />
       ) : (
         <div className="middle-row">
+          {showModal && (
+            <Opening modalContent={modalContent} modalHandler={modalHandler} />
+          )}
           {movies.map((movie) => (
             <Movie
               key={movie.episode_id}
               movie={movie}
-              childToParent={childToParent}
+              modalHandler={modalHandler}
             />
           ))}
         </div>

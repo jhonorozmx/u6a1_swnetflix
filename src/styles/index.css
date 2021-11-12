@@ -1,10 +1,6 @@
-:root {
-  --fs-xxl: clamp(5rem, 12vw + 1rem, 8rem);
-  --fs-xl: clamp(4rem, 12vw + 1rem, 6rem);
-  --fs-l: clamp(1.25rem, 10vw + 1rem, 2.5rem);
-  --fs-m: clamp(1rem, 10vw + 1rem, 1.5rem);
-}
-
+/*Responsive Typography Sizes*/
+/* Colors */
+/* Fonts */
 @font-face {
   font-family: Jedi;
   src: url("../assets/fonts/Starjedi.ttf") format("truetype");
@@ -12,10 +8,11 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background-image: url("../assets/img/star-wars-background.jpg");
+  background-image: url("../assets/images/star-wars-background.jpg");
 }
 
 .grid-container {
@@ -26,19 +23,28 @@ body {
   height: 100%;
 }
 
-header {
+.top-row {
   grid-area: header;
-  text-align: center;
+  padding: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
-header h1 {
+.top-row h1 {
   font-family: Jedi;
-  font-size: var(--fs-xxl);
+  font-size: clamp(4rem, 12vw + 1rem, 5.5rem);
   color: #fff;
+  text-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 9px #fff, 0 0 12px #ee2e31, 0 0 20px #ee2e31, 0 0 25px #ee2e31, 0 0 30px #ee2e31, 0 0 35px #ee2e31;
 }
-header h2 {
+.top-row h2 {
   font-family: "Franklin Gothic";
-  font-size: var(--fs-xl);
+  font-size: clamp(3rem, 12vw + 1rem, 4.5rem);
   color: #ffe81f;
+}
+.top-row .logo {
+  max-width: 80px;
 }
 
 main {
@@ -47,15 +53,10 @@ main {
   color: #fff;
 }
 
-.top-row {
-  padding: 1rem;
-  margin-bottom: 2rem;
-}
-
 .middle-row {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .card {
@@ -65,20 +66,44 @@ main {
   border-radius: 0.5rem;
   margin: 1rem;
   font-family: "Franklin Gothic";
+  transition: box-shadow 1s;
+}
+.card:hover {
+  box-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 9px #fff, 0 0 12px #ee2e31, 0 0 20px #ee2e31, 0 0 25px #ee2e31, 0 0 30px #ee2e31, 0 0 35px #ee2e31;
+}
+
+.card-image-container {
+  display: flex;
+  justify-content: center;
+}
+
+img.medium {
+  width: 384px;
+  height: 577px;
+  object-fit: contain;
 }
 
 .card-body {
   display: flex;
   flex-flow: column;
   justify-content: space-between;
+  margin-top: 1.5rem;
+  gap: 0.5rem;
 }
-
 .card-body p:first-child {
-  font-size: var(--fs-l);
+  font-size: clamp(1.25rem, 10vw + 1rem, 2rem);
+}
+.card-body p {
+  font-size: clamp(1rem, 10vw + 1rem, 1.5rem);
 }
 
-.card-body p {
-  font-size: var(--fs-m);
+/*BUTTONS*/
+button {
+  background-color: #2d2d2d;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  border: 1px solid #fff;
 }
 
 .primary-btn {
@@ -86,35 +111,207 @@ main {
   height: 3rem;
   margin: 0.5rem;
   align-self: center;
-  border-radius: 0.5rem;
-  font-size: var(--fs-m);
-  background-color: #2d2d2d;
-  color: #fff;
-  cursor: pointer;
-  border: 1px solid #fff;
+  font-size: clamp(1rem, 10vw + 1rem, 1.5rem);
 }
-
 .primary-btn:hover {
   color: #ffe81f;
   border: 1px solid #ffe81f;
 }
 
-.modal {
+.small-btn {
+  margin: 1rem;
+  width: 4rem;
+  height: 2.5rem;
+  font-size: clamp(1rem, 10vw + 1rem, 1.5rem);
+  transition: box-shadow 100ms, text-shadow 100ms, transform 50ms;
+}
+.small-btn:hover {
+  box-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 9px #fff, 0 0 12px #ee2e31, 0 0 20px #ee2e31, 0 0 25px #ee2e31, 0 0 30px #ee2e31, 0 0 35px #ee2e31;
+  text-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 9px #fff, 0 0 12px #ee2e31, 0 0 20px #ee2e31, 0 0 25px #ee2e31, 0 0 30px #ee2e31, 0 0 35px #ee2e31;
+}
+.small-btn:active {
+  transform: scale(0.96);
+}
+
+/* MODAL STYLES*/
+.modal-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(91, 91, 93, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+}
+
+.modal-top {
+  display: flex;
+  justify-content: right;
+}
+
+.modal-main {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  display: flex;
+  height: 60%;
+  width: 70%;
+  perspective: 400px;
+  padding: 2.5rem;
+  background-image: url("../assets/images/modal-bg.jpg");
+  font-family: "Franklin Gothic";
+  font-size: clamp(2rem, 12vw + 1rem, 3rem);
+  color: #ffe81f;
+  overflow: hidden;
+  position: relative;
+}
+
+/*Modal Content Containers*/
+.front {
   position: absolute;
   top: 0;
   left: 0;
+  padding: 0 2.5rem;
   height: 100%;
   width: 100%;
-  background-color: lightblue;
+}
+
+.crawl {
+  font-size: clamp(2rem, 12vw + 1rem, 3rem);
+  top: 100%;
+  transform-origin: 50% 100%;
+  transform: perspective(350px) rotateX(25deg);
+}
+
+/*Modal Content Elements*/
+.intro {
+  position: relative;
+  line-height: 1;
+  top: 45%;
+  font-size: clamp(1rem, 10vw + 1rem, 1.5rem);
+  text-align: center;
+  color: aqua;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.intro.animated {
+  animation: showIntro 10s ease-in-out 0s;
+}
+
+.swlogo {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
   z-index: 1;
+  transform: scale(1.3);
+  opacity: 0;
+}
+
+.swlogo.animated {
+  animation: shrinkLogo 10s linear 11s;
+}
+
+.crawl-text {
+  text-align: center;
+  position: relative;
+  top: 110%;
+  z-index: 3;
+}
+.crawl-text p:nth-child(4) {
+  text-align: justify;
+}
+
+.crawl-text.animated {
+  animation: slideText 40s linear 19s;
+}
+
+.op-text.animated {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: clamp(1.25rem, 10vw + 1rem, 2rem);
+  text-align: justify;
+  opacity: 0;
+  animation: showText 5s linear 60s forwards;
+}
+
+.op-text {
+  opacity: 1;
+  font-size: clamp(1.25rem, 10vw + 1rem, 2rem);
+  text-align: justify;
 }
 
 footer {
   grid-area: footer;
   font-family: "Franklin Gothic";
-  font-size: var(--fs-l);
+  font-size: clamp(1.25rem, 10vw + 1rem, 2rem);
   color: #fff;
   text-align: center;
+}
+
+@media only screen and (max-width: 795px) {
+  header {
+    flex-direction: column;
+  }
+}
+@keyframes showIntro {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+  }
+  70% {
+    visibility: visible;
+    opacity: 1;
+  }
+  100% {
+    visibility: hidden;
+  }
+}
+@keyframes shrinkLogo {
+  0% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+  90% {
+    transform: scale(0.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.05);
+    opacity: 0;
+  }
+}
+@keyframes slideText {
+  0% {
+    top: 105%;
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    top: -200%;
+    opacity: 0;
+  }
+}
+@keyframes showText {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */
