@@ -1,9 +1,202 @@
-/*Responsive Typography Sizes*/
-/* Colors */
-/* Fonts */
+/* Font families and font sizes*/
 @font-face {
   font-family: Jedi;
   src: url("../assets/fonts/Starjedi.ttf") format("truetype");
+}
+/*Responsive Typography Sizes*/
+/* Colors */
+/* MODAL STYLES*/
+.modal-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(91, 91, 93, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+}
+
+.modal-top {
+  display: flex;
+  justify-content: right;
+}
+
+.modal-main {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  display: flex;
+  max-height: 1000px;
+  max-width: 1000px;
+  height: 60%;
+  width: 70%;
+  padding: 0 2.5rem;
+  perspective: 400px;
+  background-image: url("../assets/images/modal-bg.jpg");
+  font-size: clamp(2rem, 12vw + 1rem, 3rem);
+  color: #ffe81f;
+  overflow: hidden;
+  position: relative;
+}
+
+/*Modal Content Containers*/
+.front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 2.5rem;
+  height: 100%;
+  width: 100%;
+}
+
+.crawl {
+  font-size: clamp(2rem, 12vw + 1rem, 3rem);
+  transform-origin: 50% 100%;
+  transform: perspective(350px) rotateX(25deg);
+}
+
+/*Modal Content Elements*/
+.intro {
+  position: relative;
+  line-height: 1;
+  top: 45%;
+  font-size: clamp(1rem, 10vw + 1rem, 1.5rem);
+  text-align: center;
+  color: aqua;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.intro.animated {
+  animation: showIntro 8s ease-in-out 0s;
+}
+
+.swlogo {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 1;
+  transform: scale(1.3);
+  opacity: 0;
+}
+
+.swlogo.animated {
+  animation: shrinkLogo 9s linear 9s;
+}
+
+.crawl-text {
+  text-align: center;
+  position: relative;
+  top: 100%;
+}
+.crawl-text p:nth-child(4) {
+  text-align: justify;
+}
+
+.crawl-text.animated {
+  animation: slideText 50s linear 16s;
+}
+
+.op-text {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  font-size: clamp(1.25rem, 10vw + 1rem, 2rem);
+  text-align: justify;
+  overflow: scroll;
+}
+.op-text.visible {
+  visibility: visible;
+}
+.op-text.hidden {
+  visibility: hidden;
+}
+.op-text > p {
+  padding: 2rem;
+}
+
+.op-text.animated {
+  opacity: 0;
+  animation: showText 3s linear 67s forwards;
+}
+
+footer {
+  grid-area: footer;
+  font-size: clamp(1.25rem, 10vw + 1rem, 2rem);
+  color: #fff;
+  text-align: center;
+}
+
+@media only screen and (max-width: 795px) {
+  header {
+    flex-direction: column;
+  }
+
+  .crawl {
+    font-size: clamp(1.25rem, 10vw + 1rem, 2rem);
+  }
+}
+@keyframes showIntro {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+  }
+  70% {
+    visibility: visible;
+    opacity: 1;
+  }
+  100% {
+    visibility: hidden;
+  }
+}
+@keyframes shrinkLogo {
+  0% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+  90% {
+    transform: scale(0.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.05);
+    opacity: 0;
+  }
+}
+@keyframes slideText {
+  0% {
+    top: 100%;
+    opacity: 1;
+  }
+  99% {
+    opacity: 1;
+    top: -1500px;
+  }
+  100% {
+    top: -1500px;
+    opacity: 0;
+  }
+}
+@keyframes showText {
+  0% {
+    visibility: visible;
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 * {
   margin: 0;
@@ -11,15 +204,35 @@
   box-sizing: border-box;
 }
 
+html ::-webkit-scrollbar {
+  width: 15px;
+}
+html ::-webkit-scrollbar-corner {
+  display: none;
+}
+html ::-webkit-scrollbar:horizontal {
+  display: none;
+}
+html ::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #2d2d2d;
+}
+html ::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  background-color: rgba(91, 91, 93, 0.6);
+}
+
 body {
   background-image: url("../assets/images/star-wars-background.jpg");
+  font-family: "Franklin Gothic";
 }
 
 .grid-container {
   display: grid;
-  grid-template-areas: "header" "main" "footer";
+  grid-template-areas: "header" "theme" "main" "footer";
   grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr 5rem;
+  grid-template-rows: auto 3rem 1fr 5rem;
   height: 100%;
 }
 
@@ -33,18 +246,21 @@ body {
   gap: 1rem;
 }
 .top-row h1 {
-  font-family: Jedi;
+  font-family: "Jedi";
   font-size: clamp(4rem, 12vw + 1rem, 5.5rem);
   color: #fff;
   text-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 9px #fff, 0 0 12px #ee2e31, 0 0 20px #ee2e31, 0 0 25px #ee2e31, 0 0 30px #ee2e31, 0 0 35px #ee2e31;
 }
 .top-row h2 {
-  font-family: "Franklin Gothic";
   font-size: clamp(3rem, 12vw + 1rem, 4.5rem);
   color: #ffe81f;
 }
 .top-row .logo {
   max-width: 80px;
+}
+
+.theme {
+  grid-area: theme;
 }
 
 main {
@@ -65,7 +281,6 @@ main {
   padding: 2.5rem;
   border-radius: 0.5rem;
   margin: 1rem;
-  font-family: "Franklin Gothic";
   transition: box-shadow 1s;
 }
 .card:hover {
@@ -131,187 +346,6 @@ button {
 }
 .small-btn:active {
   transform: scale(0.96);
-}
-
-/* MODAL STYLES*/
-.modal-container {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(91, 91, 93, 0.6);
-  backdrop-filter: blur(3px);
-  z-index: 1;
-}
-
-.modal-top {
-  display: flex;
-  justify-content: right;
-}
-
-.modal-main {
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  display: flex;
-  height: 60%;
-  width: 70%;
-  perspective: 400px;
-  padding: 2.5rem;
-  background-image: url("../assets/images/modal-bg.jpg");
-  font-family: "Franklin Gothic";
-  font-size: clamp(2rem, 12vw + 1rem, 3rem);
-  color: #ffe81f;
-  overflow: hidden;
-  position: relative;
-}
-
-/*Modal Content Containers*/
-.front {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 0 2.5rem;
-  height: 100%;
-  width: 100%;
-}
-
-.crawl {
-  font-size: clamp(2rem, 12vw + 1rem, 3rem);
-  top: 100%;
-  transform-origin: 50% 100%;
-  transform: perspective(350px) rotateX(25deg);
-}
-
-/*Modal Content Elements*/
-.intro {
-  position: relative;
-  line-height: 1;
-  top: 45%;
-  font-size: clamp(1rem, 10vw + 1rem, 1.5rem);
-  text-align: center;
-  color: aqua;
-  visibility: hidden;
-  opacity: 0;
-}
-
-.intro.animated {
-  animation: showIntro 10s ease-in-out 0s;
-}
-
-.swlogo {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  z-index: 1;
-  transform: scale(1.3);
-  opacity: 0;
-}
-
-.swlogo.animated {
-  animation: shrinkLogo 10s linear 11s;
-}
-
-.crawl-text {
-  text-align: center;
-  position: relative;
-  top: 110%;
-  z-index: 3;
-}
-.crawl-text p:nth-child(4) {
-  text-align: justify;
-}
-
-.crawl-text.animated {
-  animation: slideText 40s linear 19s;
-}
-
-.op-text.animated {
-  position: relative;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  font-size: clamp(1.25rem, 10vw + 1rem, 2rem);
-  text-align: justify;
-  opacity: 0;
-  animation: showText 5s linear 60s forwards;
-}
-
-.op-text {
-  opacity: 1;
-  font-size: clamp(1.25rem, 10vw + 1rem, 2rem);
-  text-align: justify;
-}
-
-footer {
-  grid-area: footer;
-  font-family: "Franklin Gothic";
-  font-size: clamp(1.25rem, 10vw + 1rem, 2rem);
-  color: #fff;
-  text-align: center;
-}
-
-@media only screen and (max-width: 795px) {
-  header {
-    flex-direction: column;
-  }
-}
-@keyframes showIntro {
-  0% {
-    visibility: hidden;
-    opacity: 0;
-  }
-  70% {
-    visibility: visible;
-    opacity: 1;
-  }
-  100% {
-    visibility: hidden;
-  }
-}
-@keyframes shrinkLogo {
-  0% {
-    transform: scale(1.3);
-    opacity: 1;
-  }
-  90% {
-    transform: scale(0.2);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(0.05);
-    opacity: 0;
-  }
-}
-@keyframes slideText {
-  0% {
-    top: 105%;
-    opacity: 1;
-  }
-  95% {
-    opacity: 1;
-  }
-  100% {
-    top: -200%;
-    opacity: 0;
-  }
-}
-@keyframes showText {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 /*# sourceMappingURL=index.css.map */

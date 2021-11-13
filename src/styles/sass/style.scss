@@ -1,0 +1,147 @@
+@use "vars";
+@use "mixins";
+@use "modal";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  @include mixins.customScrollBar();
+}
+
+body {
+  background-image: url("../assets/images/star-wars-background.jpg");
+  font-family: vars.$ff-document;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas: "header" "theme" "main" "footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 3rem 1fr 5rem;
+  height: 100%;
+}
+
+.top-row {
+  grid-area: header;
+  padding: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  & h1 {
+    font-family: vars.$ff-highlight;
+    font-size: vars.$fs-xxl;
+    color: vars.$clr-white;
+    @include mixins.neonText(vars.$clr-sith);
+  }
+
+  & h2 {
+    font-size: vars.$fs-xl;
+    color: vars.$clr-gold;
+  }
+
+  & .logo {
+    max-width: 80px;
+  }
+}
+
+.theme {
+  grid-area: theme;
+}
+
+main {
+  grid-area: main;
+  padding: 2rem;
+  color: vars.$clr-white;
+}
+
+.middle-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.card {
+  background-color: vars.$clr-grayglass;
+  backdrop-filter: blur(5px);
+  padding: 2.5rem;
+  border-radius: 0.5rem;
+  margin: 1rem;
+  transition: box-shadow 1s;
+
+  &:hover {
+    @include mixins.neonBorder(vars.$clr-sith);
+  }
+}
+.card-image-container {
+  display: flex;
+  justify-content: center;
+}
+
+img.medium {
+  width: 384px;
+  height: 577px;
+  object-fit: contain;
+}
+
+.card-body {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  gap: 0.5rem;
+
+  & p:first-child {
+    font-size: vars.$fs-m;
+  }
+
+  & p {
+    font-size: vars.$fs-s;
+  }
+}
+
+/*BUTTONS*/
+
+button {
+  background-color: vars.$clr-darkgray;
+  color: vars.$clr-white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  border: 1px solid vars.$clr-white;
+}
+
+.primary-btn {
+  width: 50%;
+  height: 3rem;
+  margin: 0.5rem;
+  align-self: center;
+  font-size: vars.$fs-s;
+
+  &:hover {
+    color: vars.$clr-gold;
+    border: 1px solid vars.$clr-gold;
+  }
+}
+
+.small-btn {
+  margin: 1rem;
+  width: 4rem;
+  height: 2.5rem;
+  font-size: vars.$fs-s;
+  transition: box-shadow 100ms, text-shadow 100ms, transform 50ms;
+
+  &:hover {
+    @include mixins.neonBorder(vars.$clr-sith);
+    @include mixins.neonText(vars.$clr-sith);
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+}
