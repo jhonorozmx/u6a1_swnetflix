@@ -2,21 +2,25 @@ import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { ThemeProvider } from "./ThemeContext";
 import HomeScreen from "./screens/HomeScreen";
-import ToggleSwitch from "./components/ToggleSwitch";
+import Toggle from "./components/Toggle";
 import sithLogo from "./assets/images/logo-dark-theme.png";
 import jediLogo from "./assets/images/logo-light-theme.png";
 
 function App() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
 
-  const themeSetter = (theme) => {
-    setTheme(theme);
+  const themeSetter = (event) => {
+    event.target.checked ? setTheme("light") : setTheme("dark");
   };
 
   return (
     <ThemeProvider value={theme}>
       <div className="app">
         <div className="grid-container">
+          <div className="theme-toggle">
+            <label htmlFor="theme-select">Theme</label>
+            <Toggle onChange={themeSetter} />
+          </div>
           <header className={`top-row ${theme}`}>
             {theme === "dark" && (
               <img className="logo" src={sithLogo} alt="sith logo" />
@@ -28,9 +32,6 @@ function App() {
             <h1>star wars</h1>
             <h2>Movie Reference</h2>
           </header>
-          <div className="theme-toggle">
-            <ToggleSwitch toggler={themeSetter} />
-          </div>
           <main>
             <Routes>
               <Route path="/" element={<HomeScreen />}></Route>

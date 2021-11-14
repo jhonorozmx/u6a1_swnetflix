@@ -1,0 +1,50 @@
+@use "vars";
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  gap: 2rem;
+  font-weight: bold;
+}
+
+.add-movie-form {
+  width: 100%;
+  max-width: 1024px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-radius: 5px;
+
+  &.dark {
+    background-color: vars.$clr-smokeglass;
+  }
+
+  &.light {
+    background-color: vars.$clr-paleglass;
+    color: vars.$clr-darkgray;
+  }
+
+  & > div:last-child {
+    margin-top: 0.5rem;
+  }
+}
+
+input {
+  &:focus {
+    outline: none;
+  }
+
+  &#episode_id {
+    width: 30%;
+  }
+
+  &#title,
+  &#director,
+  &#producer {
+    width: 100%;
+  }
+}

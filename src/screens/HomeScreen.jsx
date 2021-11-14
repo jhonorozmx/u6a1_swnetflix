@@ -6,6 +6,7 @@ import MessageBox from "../components/MessageBox";
 import Movie from "../components/Movie";
 import Modal from "../components/Modal";
 import Animation from "../components/Animation";
+import Form from "../components/Form";
 
 const HomeScreen = () => {
   // Context
@@ -44,6 +45,11 @@ const HomeScreen = () => {
     setAnimationData(data);
   };
 
+  const formHandler = (formData) => {
+    setMovies([...movies, formData]);
+    setShowModal(false);
+  };
+
   return (
     <div className="middle-row">
       {loading ? (
@@ -58,7 +64,9 @@ const HomeScreen = () => {
             </Modal>
           )}
           {showModal && modalType === "form" && (
-            <Modal modalHandler={modalHandler}>IM A FORM</Modal>
+            <Modal modalHandler={modalHandler}>
+              <Form formHandler={formHandler} />
+            </Modal>
           )}
           {
             <div className="movies-container">
@@ -78,7 +86,7 @@ const HomeScreen = () => {
                 className={`primary large-btn ${theme}`}
                 onClick={() => modalHandler({ show: true, type: "form" })}
               >
-                Add New Movie
+                Add film
               </button>
             </div>
           }

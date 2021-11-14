@@ -44,9 +44,13 @@ img.medium {
   justify-content: space-between;
   margin-top: 1.5rem;
   gap: 0.5rem;
+  font-weight: bold;
 }
 .card-body.dark {
   color: #fff;
+}
+.card-body.light {
+  color: #2d2d2d;
 }
 .card-body p:first-child {
   font-size: clamp(1.25rem, 10vw + 1rem, 2rem);
@@ -74,11 +78,9 @@ button:active {
 }
 
 .primary {
-  width: 50%;
+  width: 100%;
   max-width: 400px;
   height: 3rem;
-  margin: 0.5rem;
-  align-self: center;
   font-size: clamp(1rem, 10vw + 1rem, 1.5rem);
   transition: box-shadow 1s, text-shadow 1s;
 }
@@ -96,7 +98,7 @@ button:active {
 }
 
 .small-btn {
-  margin: 1rem;
+  margin: 0.75rem;
   width: 4rem;
   height: 2.5rem;
   font-size: clamp(1rem, 10vw + 1rem, 1.5rem);
@@ -137,15 +139,7 @@ button:active {
   align-items: center;
 }
 
-.animation-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-.animation-content {
+.modal-content {
   display: flex;
   max-height: 1000px;
   max-width: 1000px;
@@ -299,37 +293,208 @@ button:active {
     opacity: 1;
   }
 }
-.switch span {
+.animation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.animation-content {
+  display: flex;
+  justify-content: center;
+  max-height: 1000px;
+  max-width: 1000px;
+  height: 60%;
+  width: 70%;
+  padding: 0 2.5rem;
+  perspective: 400px;
+  background-image: url("../assets/images/modal-bg.jpg");
+  font-size: clamp(2rem, 12vw + 1rem, 3rem);
+  color: #ffe81f;
+  overflow: hidden;
   position: relative;
-  width: 50px;
-  height: 26px;
-  border-radius: 15px;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
-  background: var(--gray);
-  transition: all 0.3s;
 }
-.switch span::before {
-  content: "";
+
+/*Modal Content Containers*/
+.front {
   position: absolute;
-  left: 1px;
-  top: 1px;
-  width: 24px;
-  height: 24px;
-  background: var(--white);
-  border-radius: 50%;
+  top: 0;
+  left: 0;
+  padding: 0 2.5rem;
+  height: 100%;
+  width: 100%;
+}
+
+.crawl {
+  font-size: clamp(2rem, 12vw + 1rem, 3rem);
+  transform-origin: 50% 100%;
+  transform: perspective(350px) rotateX(25deg);
+}
+
+/*Modal Content Elements*/
+.intro {
+  position: relative;
+  line-height: 1;
+  top: 45%;
+  font-size: clamp(1rem, 10vw + 1rem, 1.5rem);
+  text-align: center;
+  color: #17a7b7;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.intro.animated {
+  animation: showIntro 8s ease-in-out 0s;
+}
+
+.swlogo {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
   z-index: 1;
-  transition: transform 0.3s;
+  transform: scale(1.3);
+  opacity: 0;
 }
-.switch span::after {
-  content: "";
+
+.swlogo.animated {
+  animation: shrinkLogo 9s linear 9s;
+}
+
+.crawl-text {
+  text-align: center;
+  position: relative;
+  top: 100%;
+}
+.crawl-text p:nth-child(4) {
+  text-align: justify;
+}
+
+.crawl-text.animated {
+  animation: slideText 50s linear 16s;
+}
+
+.op-text {
   position: absolute;
-  top: 50%;
-  right: 8px;
-  width: 12px;
-  height: 12px;
-  transform: translateY(-50%);
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/uncheck-switcher.svg);
-  background-size: 12px 12px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  font-size: clamp(1.25rem, 10vw + 1rem, 2rem);
+  text-align: justify;
+  overflow: scroll;
+}
+.op-text.visible {
+  visibility: visible;
+}
+.op-text.hidden {
+  visibility: hidden;
+}
+.op-text > p {
+  padding: 2rem;
+}
+
+.op-text.animated {
+  opacity: 0;
+  animation: showText 3s linear 67s forwards;
+}
+
+@keyframes showIntro {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+  }
+  70% {
+    visibility: visible;
+    opacity: 1;
+  }
+  100% {
+    visibility: hidden;
+  }
+}
+@keyframes shrinkLogo {
+  0% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+  90% {
+    transform: scale(0.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.05);
+    opacity: 0;
+  }
+}
+@keyframes slideText {
+  0% {
+    top: 100%;
+    opacity: 1;
+  }
+  99% {
+    opacity: 1;
+    top: -1500px;
+  }
+  100% {
+    top: -1500px;
+    opacity: 0;
+  }
+}
+@keyframes showText {
+  0% {
+    visibility: visible;
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  gap: 2rem;
+  font-weight: bold;
+}
+
+.add-movie-form {
+  width: 100%;
+  max-width: 1024px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-radius: 5px;
+}
+.add-movie-form.dark {
+  background-color: rgba(40, 40, 41, 0.8);
+}
+.add-movie-form.light {
+  background-color: rgba(246, 237, 203, 0.6);
+  color: #2d2d2d;
+}
+.add-movie-form > div:last-child {
+  margin-top: 0.5rem;
+}
+
+input:focus {
+  outline: none;
+}
+input#episode_id {
+  width: 30%;
+}
+input#title, input#director, input#producer {
+  width: 100%;
 }
 
 * {
@@ -360,14 +525,26 @@ html ::-webkit-scrollbar-thumb {
 body {
   background-image: url("../assets/images/star-wars-background.jpg");
   font-family: "Franklin Gothic";
+  color: #fff;
 }
 
 .grid-container {
   display: grid;
-  grid-template-areas: "header" "theme-toggle" "main" "footer";
+  grid-template-areas: "theme-toggle" "header" "main" "footer";
   grid-template-columns: 1fr;
-  grid-template-rows: auto 2.5rem 1fr 5rem;
+  grid-template-rows: 2.5rem auto 1fr 5rem;
   height: 100%;
+}
+
+.theme-toggle {
+  grid-area: theme-toggle;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  padding: 1rem;
+}
+.theme-toggle > label {
+  margin-right: 5px;
 }
 
 .top-row {
@@ -389,18 +566,15 @@ body {
   color: #ffe81f;
 }
 .top-row .logo {
-  max-width: 80px;
+  width: 64px;
+  max-height: 64px;
+  object-fit: contain;
 }
 .top-row.dark h1 {
   text-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 9px #fff, 0 0 12px #ee2e31, 0 0 20px #ee2e31, 0 0 25px #ee2e31, 0 0 30px #ee2e31, 0 0 35px #ee2e31;
 }
 .top-row.light h1 {
   text-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 9px #fff, 0 0 12px #429cf0, 0 0 20px #429cf0, 0 0 25px #429cf0, 0 0 30px #429cf0, 0 0 35px #429cf0;
-}
-
-.theme-toggle {
-  grid-area: theme-toggle;
-  display: flex;
 }
 
 main {

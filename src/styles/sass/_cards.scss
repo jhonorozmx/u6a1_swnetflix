@@ -40,9 +40,14 @@ img.medium {
   justify-content: space-between;
   margin-top: 1.5rem;
   gap: 0.5rem;
+  font-weight: bold;
 
   &.dark {
     color: vars.$clr-white;
+  }
+
+  &.light {
+    color: vars.$clr-darkgray;
   }
 
   & p:first-child {

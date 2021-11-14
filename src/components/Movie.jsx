@@ -16,7 +16,11 @@ const Movie = ({ movieData, modalHandler, animationData }) => {
   return (
     <div key={episode_id} className={`card ${theme}`}>
       <div className="card-image-container">
-        <img className="medium" src={moviePosters[episode_id]} alt={title} />
+        <img
+          className="medium"
+          src={moviePosters[episode_id] || moviePosters.default}
+          alt={title}
+        />
       </div>
       <div className={`card-body ${theme}`}>
         <p>{title}</p>
