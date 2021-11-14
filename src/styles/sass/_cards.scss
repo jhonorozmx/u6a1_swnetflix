@@ -1,0 +1,55 @@
+@use "vars";
+@use "mixins";
+
+.card {
+  backdrop-filter: blur(5px);
+  padding: 2.5rem;
+  border-radius: 0.5rem;
+  margin: 1rem;
+  transition: box-shadow 1s;
+
+  &.dark {
+    background-color: vars.$clr-grayglass;
+    &:hover {
+      @include mixins.neonBorder(vars.$clr-sith);
+    }
+  }
+
+  &.light {
+    background-color: vars.$clr-paleglass;
+    &:hover {
+      @include mixins.neonBorder(vars.$clr-jedi);
+    }
+  }
+}
+
+.card-image-container {
+  display: flex;
+  justify-content: center;
+}
+
+img.medium {
+  width: 384px;
+  height: 577px;
+  object-fit: contain;
+}
+
+.card-body {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  gap: 0.5rem;
+
+  &.dark {
+    color: vars.$clr-white;
+  }
+
+  & p:first-child {
+    font-size: vars.$fs-m;
+  }
+
+  & p {
+    font-size: vars.$fs-s;
+  }
+}

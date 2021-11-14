@@ -1,16 +1,23 @@
 import Axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { ThemeContext } from "../ThemeContext";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import Movie from "../components/Movie";
-import Opening from "../components/Opening";
+import Modal from "../components/Modal";
+import Animation from "../components/Animation";
 
 const HomeScreen = () => {
-  const [movies, setMovies] = useState([]);
+  // Context
+  const theme = useContext(ThemeContext);
+
+  // State
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [movies, setMovies] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [modalContent, setModalContent] = useState({});
+  const [modalType, setModalType] = useState("");
+  const [animationData, setAnimationData] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,32 +35,56 @@ const HomeScreen = () => {
     fetchData();
   }, [setMovies, setLoading, setError]);
 
-  const modalHandler = ({ showModal, modalContent }) => {
-    setShowModal(showModal);
-    setModalContent(modalContent);
+  const modalHandler = ({ show, type }) => {
+    setShowModal(show);
+    setModalType(type);
+  };
+
+  const getAnimationData = (data) => {
+    setAnimationData(data);
   };
 
   return (
-    <>
+    <div className="middle-row">
       {loading ? (
         <LoadingBox />
       ) : error ? (
         <MessageBox type="error" message={error} />
       ) : (
-        <div className="middle-row">
-          {showModal && (
-            <Opening modalContent={modalContent} modalHandler={modalHandler} />
+        <>
+          {showModal && modalType === "animation" && (
+            <Modal modalHandler={modalHandler}>
+              <Animation content={animationData} />
+            </Modal>
           )}
-          {movies.map((movie) => (
-            <Movie
-              key={movie.episode_id}
-              movie={movie}
-              modalHandler={modalHandler}
-            />
-          ))}
-        </div>
+          {showModal && modalType === "form" && (
+            <Modal modalHandler={modalHandler}>IM A FORM</Modal>
+          )}
+          {
+            <div className="movies-container">
+              {movies.map((movie) => (
+                <Movie
+                  key={movie.episode_id}
+                  movieData={movie}
+                  modalHandler={modalHandler}
+                  animationData={getAnimationData}
+                />
+              ))}
+            </div>
+          }
+          {
+            <div className="add-new-movie">
+              <button
+                className={`primary large-btn ${theme}`}
+                onClick={() => modalHandler({ show: true, type: "form" })}
+              >
+                Add New Movie
+              </button>
+            </div>
+          }
+        </>
       )}
-    </>
+    </div>
   );
 };
 

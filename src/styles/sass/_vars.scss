@@ -17,7 +17,14 @@ $fs-s: clamp(1rem, 10vw + 1rem, 1.5rem);
 /* Colors */
 $clr-white: #fff;
 $clr-gold: #ffe81f;
-$clr-grayglass: rgba(91, 91, 93, 0.2);
-$clr-smokeglass: rgba(91, 91, 93, 0.6);
+$clr-intro: #17a7b7;
+
+/* Dark Theme*/
+$clr-grayglass: rgba(91, 91, 93, 0.6);
 $clr-darkgray: #2d2d2d;
 $clr-sith: #ee2e31;
+
+/* Light Theme*/
+$clr-paleglass: rgba(246, 237, 203, 0.6);
+$clr-darkyellow: #51422a;
+$clr-jedi: #429cf0;

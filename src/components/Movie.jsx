@@ -1,41 +1,30 @@
 import PropTypes from "prop-types";
+import { ThemeContext } from "../ThemeContext";
+import { useContext } from "react";
 import moviePosters from "../assets";
 
-const Movie = ({ movie, modalHandler }) => {
-  const episodes = {
-    1: "Episode I",
-    2: "Episode II",
-    3: "Episode III",
-    4: "Episode IV",
-    5: "Episode V",
-    6: "Episode VI",
+const Movie = ({ movieData, modalHandler, animationData }) => {
+  const theme = useContext(ThemeContext);
+  const { episode_id, title, director, release_date, opening_crawl } =
+    movieData;
+
+  const movieButtonHandler = () => {
+    modalHandler({ show: true, type: "animation" });
+    animationData({ episode_id, title, opening_crawl });
   };
 
   return (
-    <div key={movie.episode_id} className="card">
+    <div key={episode_id} className={`card ${theme}`}>
       <div className="card-image-container">
-        <img
-          className="medium"
-          src={moviePosters[movie.episode_id]}
-          alt={movie.title}
-        />
+        <img className="medium" src={moviePosters[episode_id]} alt={title} />
       </div>
-      <div className="card-body">
-        <p>{movie.title}</p>
-        <p>{movie.director}</p>
-        <p>{movie.release_date}</p>
+      <div className={`card-body ${theme}`}>
+        <p>{title}</p>
+        <p>{director}</p>
+        <p>{release_date}</p>
         <button
-          className="primary-btn"
-          onClick={() =>
-            modalHandler({
-              showModal: true,
-              modalContent: {
-                episode: episodes[movie.episode_id],
-                title: movie.title,
-                intro: movie.opening_crawl,
-              },
-            })
-          }
+          className={`primary medium-btn ${theme}`}
+          onClick={movieButtonHandler}
         >
           See Opening
         </button>
@@ -45,8 +34,9 @@ const Movie = ({ movie, modalHandler }) => {
 };
 
 Movie.propTypes = {
-  movie: PropTypes.object.isRequired,
+  movieData: PropTypes.object.isRequired,
   modalHandler: PropTypes.func.isRequired,
+  animationData: PropTypes.func.isRequired,
 };
 
 export default Movie;
