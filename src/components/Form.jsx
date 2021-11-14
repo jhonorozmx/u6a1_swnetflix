@@ -61,11 +61,11 @@ const Form = ({ formHandler }) => {
       ) : (
         <form className={`add-movie-form ${theme}`} onSubmit={submitHandler}>
           <div>
-            <label htmlFor="episode_id">Episode</label>
+            <label htmlFor="episode_id">Episode</label> <br />
             <input
               type="number"
               id="episode_id"
-              placeholder="Episode No."
+              placeholder="No. (7-10)"
               min="7"
               max="10"
               required
@@ -76,11 +76,11 @@ const Form = ({ formHandler }) => {
           </div>
 
           <div>
-            <label htmlFor="title">Title</label>
+            <label htmlFor="title">Title</label> <br />
             <input
               type="text"
               id="title"
-              placeholder="Title"
+              placeholder="E.g. The Force Awakens"
               minLength="4"
               maxLength="25"
               required
@@ -91,11 +91,11 @@ const Form = ({ formHandler }) => {
           </div>
 
           <div>
-            <label htmlFor="producer">Producer</label>
+            <label htmlFor="producer">Producer</label> <br />
             <input
               type="text"
               id="producer"
-              placeholder="Producer"
+              placeholder="E.g. J.J. Abrams"
               minLength="4"
               maxLength="25"
               required
@@ -106,7 +106,7 @@ const Form = ({ formHandler }) => {
           </div>
 
           <div>
-            <label htmlFor="release_date">Release date</label>
+            <label htmlFor="release_date">Release date</label> <br />
             <DatePicker
               id="release_date"
               selected={startDate}
@@ -119,11 +119,11 @@ const Form = ({ formHandler }) => {
           </div>
 
           <div>
-            <label htmlFor="director">Director</label>
+            <label htmlFor="director">Director</label> <br />
             <input
               type="text"
               id="director"
-              placeholder="Director"
+              placeholder="E.g. J.J. Abrams"
               minLength="4"
               maxLength="25"
               required
@@ -134,7 +134,7 @@ const Form = ({ formHandler }) => {
           </div>
 
           <div>
-            <label htmlFor="poster">Image of the poster</label>
+            <label htmlFor="poster">Image of the poster</label> <br />
             <input
               type="file"
               id="poster"
@@ -163,7 +163,7 @@ const Form = ({ formHandler }) => {
           </div>
 
           <div>
-            <button type="submit" className={`primary medium-btn ${theme}`}>
+            <button type="submit" className={`primary large-btn ${theme}`}>
               Save
             </button>
           </div>

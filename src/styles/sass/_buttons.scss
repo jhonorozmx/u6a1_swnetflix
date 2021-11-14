@@ -15,7 +15,7 @@ button {
   }
 
   &.light {
-    background-color: vars.$clr-darkyellow;
+    background-color: vars.$clr-brown;
   }
 
   &:active {
@@ -27,8 +27,6 @@ button {
   width: 100%;
   max-width: 400px;
   height: 3rem;
-  margin: 0.5rem;
-  align-self: center;
   font-size: vars.$fs-s;
   transition: box-shadow 1s, text-shadow 1s;
 
