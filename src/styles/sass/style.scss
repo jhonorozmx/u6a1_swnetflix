@@ -1,0 +1,113 @@
+@use "vars";
+@use "mixins";
+@use "cards";
+@use "buttons";
+@use "modal";
+@use "animation";
+@use "toggle";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  @include mixins.customScrollBar();
+}
+
+body {
+  background-image: url("../assets/images/star-wars-background.jpg");
+  font-family: vars.$ff-document;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas: "header" "theme-toggle" "main" "footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 2.5rem 1fr 5rem;
+  height: 100%;
+}
+
+.top-row {
+  grid-area: header;
+  padding: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  & h1 {
+    font-family: vars.$ff-highlight;
+    font-size: vars.$fs-xxl;
+    color: vars.$clr-white;
+  }
+
+  & h2 {
+    font-size: vars.$fs-xl;
+    color: vars.$clr-gold;
+  }
+
+  & .logo {
+    max-width: 80px;
+  }
+
+  &.dark h1 {
+    @include mixins.neonText(vars.$clr-sith);
+  }
+
+  &.light h1 {
+    @include mixins.neonText(vars.$clr-jedi);
+  }
+}
+
+.theme-toggle {
+  grid-area: theme-toggle;
+  display: flex;
+}
+
+main {
+  grid-area: main;
+  padding: 2rem;
+}
+
+.loading {
+  color: #fff;
+  font-size: vars.$fs-m;
+}
+
+.middle-row {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.movies-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.add-new-movie {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+footer {
+  grid-area: footer;
+  font-size: vars.$fs-m;
+  color: vars.$clr-white;
+  text-align: center;
+}
+
+@media only screen and (max-width: 795px) {
+  header {
+    flex-direction: column;
+  }
+
+  .crawl {
+    font-size: vars.$fs-m;
+  }
+}

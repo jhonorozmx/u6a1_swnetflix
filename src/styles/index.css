@@ -1,75 +1,30 @@
-/*Responsive Typography Sizes*/
-/* Colors */
-/* Fonts */
+/* Font families and font sizes*/
 @font-face {
   font-family: Jedi;
   src: url("../assets/fonts/Starjedi.ttf") format("truetype");
 }
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-image: url("../assets/images/star-wars-background.jpg");
-}
-
-.grid-container {
-  display: grid;
-  grid-template-areas: "header" "main" "footer";
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr 5rem;
-  height: 100%;
-}
-
-.top-row {
-  grid-area: header;
-  padding: 1.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-}
-.top-row h1 {
-  font-family: Jedi;
-  font-size: clamp(4rem, 12vw + 1rem, 5.5rem);
-  color: #fff;
-  text-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 9px #fff, 0 0 12px #ee2e31, 0 0 20px #ee2e31, 0 0 25px #ee2e31, 0 0 30px #ee2e31, 0 0 35px #ee2e31;
-}
-.top-row h2 {
-  font-family: "Franklin Gothic";
-  font-size: clamp(3rem, 12vw + 1rem, 4.5rem);
-  color: #ffe81f;
-}
-.top-row .logo {
-  max-width: 80px;
-}
-
-main {
-  grid-area: main;
-  padding: 2rem;
-  color: #fff;
-}
-
-.middle-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-
+/*Responsive Typography Sizes*/
+/* Colors */
+/* Dark Theme*/
+/* Light Theme*/
 .card {
-  background-color: rgba(91, 91, 93, 0.2);
   backdrop-filter: blur(5px);
   padding: 2.5rem;
   border-radius: 0.5rem;
   margin: 1rem;
-  font-family: "Franklin Gothic";
   transition: box-shadow 1s;
 }
-.card:hover {
+.card.dark {
+  background-color: rgba(91, 91, 93, 0.6);
+}
+.card.dark:hover {
   box-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 9px #fff, 0 0 12px #ee2e31, 0 0 20px #ee2e31, 0 0 25px #ee2e31, 0 0 30px #ee2e31, 0 0 35px #ee2e31;
+}
+.card.light {
+  background-color: rgba(246, 237, 203, 0.6);
+}
+.card.light:hover {
+  box-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 9px #fff, 0 0 12px #429cf0, 0 0 20px #429cf0, 0 0 25px #429cf0, 0 0 30px #429cf0, 0 0 35px #429cf0;
 }
 
 .card-image-container {
@@ -90,6 +45,9 @@ img.medium {
   margin-top: 1.5rem;
   gap: 0.5rem;
 }
+.card-body.dark {
+  color: #fff;
+}
 .card-body p:first-child {
   font-size: clamp(1.25rem, 10vw + 1rem, 2rem);
 }
@@ -99,23 +57,42 @@ img.medium {
 
 /*BUTTONS*/
 button {
-  background-color: #2d2d2d;
-  color: #fff;
   cursor: pointer;
   border-radius: 0.5rem;
+  color: #fff;
   border: 1px solid #fff;
+  transition: transform 50ms;
+}
+button.dark {
+  background-color: #2d2d2d;
+}
+button.light {
+  background-color: #51422a;
+}
+button:active {
+  transform: scale(0.96);
 }
 
-.primary-btn {
+.primary {
   width: 50%;
+  max-width: 400px;
   height: 3rem;
   margin: 0.5rem;
   align-self: center;
   font-size: clamp(1rem, 10vw + 1rem, 1.5rem);
+  transition: box-shadow 1s, text-shadow 1s;
 }
-.primary-btn:hover {
+.primary.medium-btn:hover {
   color: #ffe81f;
   border: 1px solid #ffe81f;
+}
+.primary.large-btn.dark:hover {
+  box-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 9px #fff, 0 0 12px #ee2e31, 0 0 20px #ee2e31, 0 0 25px #ee2e31, 0 0 30px #ee2e31, 0 0 35px #ee2e31;
+  text-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 9px #fff, 0 0 12px #ee2e31, 0 0 20px #ee2e31, 0 0 25px #ee2e31, 0 0 30px #ee2e31, 0 0 35px #ee2e31;
+}
+.primary.large-btn.light:hover {
+  box-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 9px #fff, 0 0 12px #429cf0, 0 0 20px #429cf0, 0 0 25px #429cf0, 0 0 30px #429cf0, 0 0 35px #429cf0;
+  text-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 9px #fff, 0 0 12px #429cf0, 0 0 20px #429cf0, 0 0 25px #429cf0, 0 0 30px #429cf0, 0 0 35px #429cf0;
 }
 
 .small-btn {
@@ -123,20 +100,24 @@ button {
   width: 4rem;
   height: 2.5rem;
   font-size: clamp(1rem, 10vw + 1rem, 1.5rem);
-  transition: box-shadow 100ms, text-shadow 100ms, transform 50ms;
+  transition: box-shadow 150ms, text-shadow 150ms;
 }
-.small-btn:hover {
+.small-btn.dark:hover {
   box-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 9px #fff, 0 0 12px #ee2e31, 0 0 20px #ee2e31, 0 0 25px #ee2e31, 0 0 30px #ee2e31, 0 0 35px #ee2e31;
   text-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 9px #fff, 0 0 12px #ee2e31, 0 0 20px #ee2e31, 0 0 25px #ee2e31, 0 0 30px #ee2e31, 0 0 35px #ee2e31;
 }
-.small-btn:active {
-  transform: scale(0.96);
+.small-btn.light:hover {
+  box-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 9px #fff, 0 0 12px #429cf0, 0 0 20px #429cf0, 0 0 25px #429cf0, 0 0 30px #429cf0, 0 0 35px #429cf0;
+  text-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 9px #fff, 0 0 12px #429cf0, 0 0 20px #429cf0, 0 0 25px #429cf0, 0 0 30px #429cf0, 0 0 35px #429cf0;
 }
 
 /* MODAL STYLES*/
 .modal-container {
   position: fixed;
   top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(91, 91, 93, 0.6);
@@ -156,14 +137,23 @@ button {
   align-items: center;
 }
 
-.modal-content {
+.animation-container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.animation-content {
+  display: flex;
+  max-height: 1000px;
+  max-width: 1000px;
   height: 60%;
   width: 70%;
+  padding: 0 2.5rem;
   perspective: 400px;
-  padding: 2.5rem;
   background-image: url("../assets/images/modal-bg.jpg");
-  font-family: "Franklin Gothic";
   font-size: clamp(2rem, 12vw + 1rem, 3rem);
   color: #ffe81f;
   overflow: hidden;
@@ -182,7 +172,6 @@ button {
 
 .crawl {
   font-size: clamp(2rem, 12vw + 1rem, 3rem);
-  top: 100%;
   transform-origin: 50% 100%;
   transform: perspective(350px) rotateX(25deg);
 }
@@ -194,13 +183,13 @@ button {
   top: 45%;
   font-size: clamp(1rem, 10vw + 1rem, 1.5rem);
   text-align: center;
-  color: aqua;
+  color: #17a7b7;
   visibility: hidden;
   opacity: 0;
 }
 
 .intro.animated {
-  animation: showIntro 10s ease-in-out 0s;
+  animation: showIntro 8s ease-in-out 0s;
 }
 
 .swlogo {
@@ -217,54 +206,48 @@ button {
 }
 
 .swlogo.animated {
-  animation: shrinkLogo 10s linear 11s;
+  animation: shrinkLogo 9s linear 9s;
 }
 
 .crawl-text {
   text-align: center;
   position: relative;
-  top: 110%;
-  z-index: 3;
+  top: 100%;
 }
 .crawl-text p:nth-child(4) {
   text-align: justify;
 }
 
 .crawl-text.animated {
-  animation: slideText 40s linear 19s;
+  animation: slideText 50s linear 16s;
 }
 
-.op-text.animated {
-  position: relative;
+.op-text {
+  position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 2;
   font-size: clamp(1.25rem, 10vw + 1rem, 2rem);
   text-align: justify;
+  overflow: scroll;
+}
+.op-text.visible {
+  visibility: visible;
+}
+.op-text.hidden {
+  visibility: hidden;
+}
+.op-text > p {
+  padding: 2rem;
+}
+
+.op-text.animated {
   opacity: 0;
-  animation: showText 5s linear 60s forwards;
+  animation: showText 3s linear 67s forwards;
 }
 
-.op-text {
-  opacity: 1;
-  font-size: clamp(1.25rem, 10vw + 1rem, 2rem);
-  text-align: justify;
-}
-
-footer {
-  grid-area: footer;
-  font-family: "Franklin Gothic";
-  font-size: clamp(1.25rem, 10vw + 1rem, 2rem);
-  color: #fff;
-  text-align: center;
-}
-
-@media only screen and (max-width: 795px) {
-  header {
-    flex-direction: column;
-  }
-}
 @keyframes showIntro {
   0% {
     visibility: hidden;
@@ -294,23 +277,174 @@ footer {
 }
 @keyframes slideText {
   0% {
-    top: 105%;
+    top: 100%;
     opacity: 1;
   }
-  95% {
+  99% {
     opacity: 1;
+    top: -1500px;
   }
   100% {
-    top: -200%;
+    top: -1500px;
     opacity: 0;
   }
 }
 @keyframes showText {
   0% {
+    visibility: visible;
     opacity: 0;
   }
   100% {
+    visibility: visible;
     opacity: 1;
+  }
+}
+.switch span {
+  position: relative;
+  width: 50px;
+  height: 26px;
+  border-radius: 15px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
+  background: var(--gray);
+  transition: all 0.3s;
+}
+.switch span::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  width: 24px;
+  height: 24px;
+  background: var(--white);
+  border-radius: 50%;
+  z-index: 1;
+  transition: transform 0.3s;
+}
+.switch span::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 12px;
+  height: 12px;
+  transform: translateY(-50%);
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/uncheck-switcher.svg);
+  background-size: 12px 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html ::-webkit-scrollbar {
+  width: 15px;
+}
+html ::-webkit-scrollbar-corner {
+  display: none;
+}
+html ::-webkit-scrollbar:horizontal {
+  display: none;
+}
+html ::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #2d2d2d;
+}
+html ::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  background-color: rgba(91, 91, 93, 0.6);
+}
+
+body {
+  background-image: url("../assets/images/star-wars-background.jpg");
+  font-family: "Franklin Gothic";
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas: "header" "theme-toggle" "main" "footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 2.5rem 1fr 5rem;
+  height: 100%;
+}
+
+.top-row {
+  grid-area: header;
+  padding: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.top-row h1 {
+  font-family: "Jedi";
+  font-size: clamp(4rem, 12vw + 1rem, 5.5rem);
+  color: #fff;
+}
+.top-row h2 {
+  font-size: clamp(3rem, 12vw + 1rem, 4.5rem);
+  color: #ffe81f;
+}
+.top-row .logo {
+  max-width: 80px;
+}
+.top-row.dark h1 {
+  text-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 9px #fff, 0 0 12px #ee2e31, 0 0 20px #ee2e31, 0 0 25px #ee2e31, 0 0 30px #ee2e31, 0 0 35px #ee2e31;
+}
+.top-row.light h1 {
+  text-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 9px #fff, 0 0 12px #429cf0, 0 0 20px #429cf0, 0 0 25px #429cf0, 0 0 30px #429cf0, 0 0 35px #429cf0;
+}
+
+.theme-toggle {
+  grid-area: theme-toggle;
+  display: flex;
+}
+
+main {
+  grid-area: main;
+  padding: 2rem;
+}
+
+.loading {
+  color: #fff;
+  font-size: clamp(1.25rem, 10vw + 1rem, 2rem);
+}
+
+.middle-row {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.movies-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.add-new-movie {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+footer {
+  grid-area: footer;
+  font-size: clamp(1.25rem, 10vw + 1rem, 2rem);
+  color: #fff;
+  text-align: center;
+}
+
+@media only screen and (max-width: 795px) {
+  header {
+    flex-direction: column;
+  }
+
+  .crawl {
+    font-size: clamp(1.25rem, 10vw + 1rem, 2rem);
   }
 }
 

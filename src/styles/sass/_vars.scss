@@ -1,0 +1,30 @@
+/* Font families and font sizes*/
+@font-face {
+  font-family: Jedi;
+  src: url("../assets/fonts/Starjedi.ttf") format("truetype");
+}
+
+$ff-highlight: "Jedi";
+$ff-document: "Franklin Gothic";
+
+/*Responsive Typography Sizes*/
+$fs-xxl: clamp(4rem, 12vw + 1rem, 5.5rem);
+$fs-xl: clamp(3rem, 12vw + 1rem, 4.5rem);
+$fs-l: clamp(2rem, 12vw + 1rem, 3rem);
+$fs-m: clamp(1.25rem, 10vw + 1rem, 2rem);
+$fs-s: clamp(1rem, 10vw + 1rem, 1.5rem);
+
+/* Colors */
+$clr-white: #fff;
+$clr-gold: #ffe81f;
+$clr-intro: #17a7b7;
+
+/* Dark Theme*/
+$clr-grayglass: rgba(91, 91, 93, 0.6);
+$clr-darkgray: #2d2d2d;
+$clr-sith: #ee2e31;
+
+/* Light Theme*/
+$clr-paleglass: rgba(246, 237, 203, 0.6);
+$clr-darkyellow: #51422a;
+$clr-jedi: #429cf0;
