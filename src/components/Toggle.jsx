@@ -9,7 +9,7 @@ const CustomSwitch = styled(Switch)`
   }
 
   & .Mui-checked {
-    color: #fff;
+    color: #ffffff;
   }
 `;
 const Toggle = ({ onChange }) => {
